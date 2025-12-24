@@ -13,11 +13,7 @@ interface TimelineItem {
   highlights?: string[];
 }
 
-interface TimelineProps {
-  type: 'education' | 'experience';
-}
-
-const Timeline: React.FC<TimelineProps> = ({ type }) => {
+const Timeline: React.FC = () => {
   const { mode } = usePortfolio();
 
   const educationItems: TimelineItem[] = [
@@ -108,91 +104,123 @@ const Timeline: React.FC<TimelineProps> = ({ type }) => {
     },
   ];
 
-  const items = type === 'education' ? educationItems : experienceItems;
-  const Icon = type === 'education' ? GraduationCap : Briefcase;
-  const sectionId = type === 'education' ? 'education' : 'experience';
-  const sectionTitle = type === 'education' 
-    ? (mode === 'devops' ? '$ cat /education/history' : '$ cat /training/certifications')
-    : (mode === 'devops' ? '$ cat /experience/work' : '$ cat /operations/missions');
+  const educationTitle = mode === 'devops' ? '$ cat /education/history' : '$ cat /training/certifications';
+  const experienceTitle = mode === 'devops' ? '$ cat /experience/work' : '$ cat /operations/missions';
+
+  const renderTimelineCard = (item: TimelineItem, Icon: typeof GraduationCap) => (
+    <div key={item.id} className="bg-card border border-primary/20 rounded p-5 hover:border-primary/50 transition-all duration-300 group">
+      {/* Header */}
+      <div className="flex items-start gap-3 mb-3">
+        <div className="p-2 bg-primary/10 rounded">
+          <Icon className="w-4 h-4 text-primary" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+            {item.title}
+          </h3>
+          <p className="text-primary font-mono text-xs">{item.organization}</p>
+        </div>
+      </div>
+
+      {/* Meta */}
+      <div className="flex flex-wrap gap-3 mb-3 text-xs font-mono text-muted-foreground">
+        <span className="flex items-center gap-1">
+          <Calendar className="w-3 h-3" />
+          {item.startDate} - {item.endDate}
+        </span>
+        <span className="flex items-center gap-1">
+          <MapPin className="w-3 h-3" />
+          {item.location}
+        </span>
+      </div>
+
+      {/* Description */}
+      <p className="text-muted-foreground font-mono text-xs mb-3">
+        {item.description}
+      </p>
+
+      {/* Highlights */}
+      {item.highlights && (
+        <ul className="space-y-1">
+          {item.highlights.map((highlight, i) => (
+            <li key={i} className="flex items-center gap-2 text-xs font-mono text-foreground/70">
+              <span className="text-primary">{'>'}</span>
+              {highlight}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 
   return (
-    <section id={sectionId} className="py-20 relative">
+    <section id="timeline" className="py-20 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
             <span className="text-primary/60 font-mono text-sm">
-              {`// SECTION: ${type.toUpperCase()}`}
+              {`// SECTION: JOURNEY`}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold neon-glow">
-            {sectionTitle}
+            My Journey
           </h2>
         </div>
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-primary/30 transform md:-translate-x-1/2" />
-
-          {items.map((item, index) => (
-            <div
-              key={item.id}
-              className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
-                index % 2 === 0 ? 'md:flex-row-reverse' : ''
-              }`}
-            >
-              {/* Timeline Node */}
-              <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 border-4 border-background animate-pulse-glow z-10" />
-
-              {/* Content Card */}
-              <div className={`ml-8 md:ml-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-                <div className="bg-card border border-primary/20 rounded p-6 hover:border-primary/50 transition-all duration-300 group">
-                  {/* Header */}
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className="p-2 bg-primary/10 rounded">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-primary font-mono text-sm">{item.organization}</p>
-                    </div>
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Left Column - Education */}
+          <div>
+            <div className="text-center mb-8">
+              <h3 className="text-xl md:text-2xl font-display font-semibold text-primary">
+                {educationTitle}
+              </h3>
+              <p className="text-muted-foreground font-mono text-sm mt-2">Education & Training</p>
+            </div>
+            
+            {/* Education Timeline */}
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-primary/30" />
+              
+              <div className="space-y-6">
+                {educationItems.map((item, index) => (
+                  <div key={item.id} className="relative pl-12">
+                    {/* Timeline Node */}
+                    <div className="absolute left-2 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background animate-pulse-glow z-10" />
+                    {renderTimelineCard(item, GraduationCap)}
                   </div>
-
-                  {/* Meta */}
-                  <div className="flex flex-wrap gap-4 mb-4 text-xs font-mono text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {item.startDate} - {item.endDate}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
-                      {item.location}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground font-mono text-sm mb-4">
-                    {item.description}
-                  </p>
-
-                  {/* Highlights */}
-                  {item.highlights && (
-                    <ul className="space-y-1">
-                      {item.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs font-mono text-foreground/70">
-                          <span className="text-primary">{'>'}</span>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Right Column - Experience */}
+          <div>
+            <div className="text-center mb-8">
+              <h3 className="text-xl md:text-2xl font-display font-semibold text-primary">
+                {experienceTitle}
+              </h3>
+              <p className="text-muted-foreground font-mono text-sm mt-2">Work Experience</p>
+            </div>
+            
+            {/* Experience Timeline */}
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-primary/30" />
+              
+              <div className="space-y-6">
+                {experienceItems.map((item, index) => (
+                  <div key={item.id} className="relative pl-12">
+                    {/* Timeline Node */}
+                    <div className="absolute left-2 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background animate-pulse-glow z-10" />
+                    {renderTimelineCard(item, Briefcase)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -18,8 +18,7 @@ const Index = () => {
         <Hero />
         <About />
         <Projects />
-        <Timeline type="education" />
-        <Timeline type="experience" />
+        <Timeline />
         <ResumeDownload />
         <Footer />
         <FloatingActionButton />

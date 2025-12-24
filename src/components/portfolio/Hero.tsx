@@ -65,10 +65,16 @@ const Hero: React.FC = () => {
             <span className="text-primary ml-2 animate-pulse">_</span>
           </div>
 
-          {/* Name */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-4 neon-glow">
-            JOHN DOE
-          </h1>
+          {/* Name with welcoming character */}
+          <div className="flex items-center justify-center gap-4 mb-4">
+            {/* Animated waving character */}
+            <div className="text-4xl md:text-5xl lg:text-6xl animate-wave">
+              👋
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold neon-glow">
+              JOHN DOE
+            </h1>
+          </div>
 
           {/* Animated title */}
           <div className="h-12 md:h-16 flex items-center justify-center mb-8">
