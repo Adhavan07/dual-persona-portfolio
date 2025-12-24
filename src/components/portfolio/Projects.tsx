@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import { ExternalLink, Github, X, Folder } from 'lucide-react';
 
@@ -144,7 +144,7 @@ const Projects: React.FC = () => {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer bg-card border border-primary/20 rounded overflow-hidden hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+              className="group cursor-pointer bg-card border border-primary/20 rounded overflow-hidden hover:border-primary/60 transition-all duration-300 card-zoom"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Card Header */}
@@ -189,7 +189,7 @@ const Projects: React.FC = () => {
                   {project.techStack.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-primary/10 text-primary text-xs font-mono rounded"
+                      className="px-2 py-1 bg-primary/10 text-primary text-xs font-mono rounded card-zoom"
                     >
                       {tech}
                     </span>

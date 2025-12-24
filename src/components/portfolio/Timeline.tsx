@@ -108,7 +108,7 @@ const Timeline: React.FC = () => {
   const experienceTitle = mode === 'devops' ? '$ cat /experience/work' : '$ cat /operations/missions';
 
   const renderTimelineCard = (item: TimelineItem, Icon: typeof GraduationCap) => (
-    <div key={item.id} className="bg-card border border-primary/20 rounded p-5 hover:border-primary/50 transition-all duration-300 group">
+    <div key={item.id} className="bg-card border border-primary/20 rounded p-5 hover:border-primary/50 transition-all duration-300 group card-zoom">
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 bg-primary/10 rounded">
