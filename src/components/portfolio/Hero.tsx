@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, User } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const { mode } = usePortfolio();
+  const { mode, isTransitioning } = usePortfolio();
   const [displayText, setDisplayText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
+  const prevModeRef = useRef(mode);
 
   const devopsTitle = 'DevOps | Cloud | SRE Engineer';
   const securityTitle = 'DevSecOps | Ethical Hacker | Security Engineer';
@@ -29,6 +31,16 @@ const Hero: React.FC = () => {
 
     return () => clearInterval(typeInterval);
   }, [mode, targetTitle]);
+
+  // Trigger glitch animation on mode change
+  useEffect(() => {
+    if (prevModeRef.current !== mode) {
+      setIsGlitching(true);
+      const timeout = setTimeout(() => setIsGlitching(false), 500);
+      prevModeRef.current = mode;
+      return () => clearTimeout(timeout);
+    }
+  }, [mode]);
 
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
@@ -65,8 +77,30 @@ const Hero: React.FC = () => {
             <span className="text-primary ml-2 animate-pulse">_</span>
           </div>
 
-          {/* Name with welcoming character */}
+          {/* Name with profile picture and welcoming character */}
           <div className="flex items-center justify-center gap-4 mb-4">
+            {/* Profile Picture */}
+            <div 
+              className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-primary overflow-hidden bg-card flex items-center justify-center ${isGlitching ? 'animate-profile-glitch' : ''}`}
+            >
+              {mode === 'devops' ? (
+                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                  <User className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+                </div>
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center relative">
+                  <User className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+                  {/* Hacker overlay effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-mono text-primary opacity-60">
+                    {'</>'}
+                  </div>
+                </div>
+              )}
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-full border border-primary/50 animate-pulse-glow pointer-events-none" />
+            </div>
+            
             {/* Animated waving character */}
             <div className="text-4xl md:text-5xl lg:text-6xl animate-wave">
               👋
@@ -85,8 +119,6 @@ const Hero: React.FC = () => {
               </span>
             </h2>
           </div>
-
-          {/* Intro text */}
           <p className="text-muted-foreground font-mono text-sm md:text-base max-w-2xl mx-auto mb-12 leading-relaxed">
             {mode === 'devops' ? (
               <>
