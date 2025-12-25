@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
-import { ChevronDown, User } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import profilePic from '@/assets/profile-pic.png';
 
 const Hero: React.FC = () => {
   const { mode, isTransitioning } = usePortfolio();
@@ -83,19 +84,19 @@ const Hero: React.FC = () => {
             <div 
               className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-primary overflow-hidden bg-card flex items-center justify-center ${isGlitching ? 'animate-profile-glitch' : ''}`}
             >
-              {mode === 'devops' ? (
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <User className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                </div>
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center relative">
-                  <User className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+              <img 
+                src={profilePic} 
+                alt="Profile" 
+                className="w-full h-full object-cover"
+              />
+              {mode === 'security' && (
+                <>
                   {/* Hacker overlay effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-mono text-primary opacity-60">
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-primary/10" />
+                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-mono text-primary opacity-80">
                     {'</>'}
                   </div>
-                </div>
+                </>
               )}
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-full border border-primary/50 animate-pulse-glow pointer-events-none" />
