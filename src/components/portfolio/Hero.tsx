@@ -118,8 +118,8 @@ const Hero: React.FC = () => {
           <div className="h-12 md:h-16 flex items-center justify-center mb-8">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-display text-primary terminal-text">
               {displayText}
-              <span className={`ml-1 border-r-2 border-primary ${isTypingComplete ? 'animate-blink' : ''}`}>
-                &nbsp;
+              <span className={`terminal-cursor ${isTypingComplete ? 'terminal-cursor-idle' : ''}`}>
+                ▌
               </span>
             </h2>
           </div>
