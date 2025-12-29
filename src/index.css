@@ -220,30 +220,7 @@ All colors MUST be HSL.
     }
   }
 
-@keyframes code-rain {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-}
-
-.animate-code-rain {
-  animation: code-rain linear infinite;
-  white-space: pre;
-  line-height: 1.5;
-}
-
-@keyframes matrix-rain {
+  @keyframes matrix-rain {
     0% { transform: translateY(-100%); opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
   }
@@ -301,56 +278,6 @@ All colors MUST be HSL.
   .terminal-text {
     text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary));
   }
-
-  .terminal-cursor {
-    display: inline-block;
-    color: hsl(var(--primary));
-    text-shadow: 
-      0 0 5px hsl(var(--primary)),
-      0 0 10px hsl(var(--primary)),
-      0 0 20px hsl(var(--primary) / 0.5);
-    animation: cursor-pulse 0.8s ease-in-out infinite;
-  }
-
-  .terminal-cursor-idle {
-    animation: cursor-blink 1s step-end infinite, cursor-glow 2s ease-in-out infinite;
-  }
-
-@keyframes cursor-pulse {
-  0%, 100% {
-    opacity: 1;
-    text-shadow: 
-      0 0 5px hsl(var(--primary)),
-      0 0 10px hsl(var(--primary)),
-      0 0 20px hsl(var(--primary) / 0.5);
-  }
-  50% {
-    opacity: 0.8;
-    text-shadow: 
-      0 0 2px hsl(var(--primary)),
-      0 0 5px hsl(var(--primary) / 0.5);
-  }
-}
-
-@keyframes cursor-blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-@keyframes cursor-glow {
-  0%, 100% {
-    text-shadow: 
-      0 0 5px hsl(var(--primary)),
-      0 0 15px hsl(var(--primary)),
-      0 0 30px hsl(var(--primary) / 0.7);
-  }
-  50% {
-    text-shadow: 
-      0 0 10px hsl(var(--primary)),
-      0 0 25px hsl(var(--primary)),
-      0 0 50px hsl(var(--primary) / 0.9);
-  }
-}
 
   /* Neon glow effect */
   .neon-glow {
