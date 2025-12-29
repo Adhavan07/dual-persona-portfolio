@@ -220,7 +220,30 @@ All colors MUST be HSL.
     }
   }
 
-  @keyframes matrix-rain {
+@keyframes code-rain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.animate-code-rain {
+  animation: code-rain linear infinite;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+@keyframes matrix-rain {
     0% { transform: translateY(-100%); opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
   }
