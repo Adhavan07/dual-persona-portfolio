@@ -52,19 +52,22 @@ const Hero: React.FC = () => {
       {/* Background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+      {/* Code Rain Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/50 rounded-full animate-float"
+            className="absolute top-0 text-primary/[0.07] font-mono text-xs animate-code-rain"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
+              left: `${(i * 7) + 2}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${15 + Math.random() * 10}s`,
             }}
-          />
+          >
+            {Array.from({ length: 20 }, () => 
+              ['0', '1', '{', '}', '<', '>', '/', '\\', '|', ';', ':', '$', '#', '@', '*'][Math.floor(Math.random() * 15)]
+            ).join('\n')}
+          </div>
         ))}
       </div>
 
@@ -137,28 +140,6 @@ const Hero: React.FC = () => {
               </>
             )}
           </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a
-              href="#projects"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="group px-8 py-3 bg-primary text-primary-foreground font-display font-semibold rounded border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 neon-border"
-            >
-              <span className="mr-2">{'['}</span>
-              View Projects
-              <span className="ml-2">{']'}</span>
-            </a>
-            <a
-              href="#resume"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#resume')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="group px-8 py-3 bg-transparent text-primary font-display font-semibold rounded border border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300"
-            >
-              <span className="mr-2">{'{'}</span>
-              Download Resume
-              <span className="ml-2">{'}'}</span>
-            </a>
-          </div>
 
           {/* Scroll indicator */}
           <button
