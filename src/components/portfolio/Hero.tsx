@@ -1,7 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import { ChevronDown } from 'lucide-react';
 import profilePic from '@/assets/profile-pic.png';
+
+// Code rain characters
+const CODE_CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン<>/{}[]();:=+-*&%$#@!?';
 
 const Hero: React.FC = () => {
   const { mode, isTransitioning } = usePortfolio();
@@ -9,6 +12,17 @@ const Hero: React.FC = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isGlitching, setIsGlitching] = useState(false);
   const prevModeRef = useRef(mode);
+
+  // Generate code rain columns
+  const codeRainColumns = useMemo(() => {
+    return [...Array(30)].map((_, i) => ({
+      id: i,
+      left: `${(i / 30) * 100}%`,
+      delay: Math.random() * 20,
+      duration: 15 + Math.random() * 10,
+      chars: [...Array(20)].map(() => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)])
+    }));
+  }, []);
 
   const devopsTitle = 'DevOps | Cloud | SRE Engineer';
   const securityTitle = 'DevSecOps | Ethical Hacker | Security Engineer';
@@ -50,21 +64,24 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+      {/* Code Rain Effect - Extremely Subtle */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {codeRainColumns.map((column) => (
           <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/50 rounded-full animate-float"
+            key={column.id}
+            className="absolute top-0 font-mono text-[10px] text-primary/[0.08] animate-code-rain select-none"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
+              left: column.left,
+              animationDelay: `${column.delay}s`,
+              animationDuration: `${column.duration}s`,
             }}
-          />
+          >
+            {column.chars.map((char, idx) => (
+              <div key={idx} className="leading-4">{char}</div>
+            ))}
+          </div>
         ))}
       </div>
 
@@ -138,27 +155,6 @@ const Hero: React.FC = () => {
             )}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a
-              href="#projects"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="group px-8 py-3 bg-primary text-primary-foreground font-display font-semibold rounded border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 neon-border"
-            >
-              <span className="mr-2">{'['}</span>
-              View Projects
-              <span className="ml-2">{']'}</span>
-            </a>
-            <a
-              href="#resume"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#resume')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="group px-8 py-3 bg-transparent text-primary font-display font-semibold rounded border border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300"
-            >
-              <span className="mr-2">{'{'}</span>
-              Download Resume
-              <span className="ml-2">{'}'}</span>
-            </a>
-          </div>
 
           {/* Scroll indicator */}
           <button
