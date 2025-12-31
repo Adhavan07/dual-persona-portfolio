@@ -3,7 +3,7 @@ import { usePortfolio } from '@/contexts/PortfolioContext';
 import { 
   Cloud, Database, Server, GitBranch, Container, 
   Shield, Lock, Bug, Eye, Fingerprint,
-  Terminal, Minus, Square, X, Maximize2
+  Terminal, X, Anchor, Map, Compass, Ship, Sword, Gem
 } from 'lucide-react';
 
 const About: React.FC = () => {
@@ -36,7 +36,144 @@ const About: React.FC = () => {
     { name: 'OWASP', icon: Shield },
   ];
 
-  const skills = mode === 'devops' ? devopsSkills : securitySkills;
+  const pirateSkills = [
+    { name: 'React/Next.js', icon: Compass },
+    { name: 'TypeScript', icon: Sword },
+    { name: 'Node.js', icon: Ship },
+    { name: 'Game Dev', icon: Gem },
+    { name: 'Mobile Apps', icon: Map },
+    { name: 'AI/ML Projects', icon: Anchor },
+    { name: 'Open Source', icon: Ship },
+    { name: 'Side Hustles', icon: Gem },
+    { name: 'Hobby Projects', icon: Compass },
+    { name: 'Learning', icon: Map },
+  ];
+
+  const getSkills = () => {
+    switch (mode) {
+      case 'devops': return devopsSkills;
+      case 'security': return securitySkills;
+      case 'pirate': return pirateSkills;
+    }
+  };
+
+  const skills = getSkills();
+
+  const getTerminalContent = () => {
+    switch (mode) {
+      case 'devops':
+        return (
+          <>
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                Hello! I'm a passionate <span className="text-primary">DevOps Engineer</span> with 
+                expertise in cloud infrastructure, automation, and building resilient systems. 
+                I thrive on optimizing deployment pipelines and ensuring high availability.
+              </span>
+            </p>
+            
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                With experience in managing <span className="text-accent">Kubernetes clusters</span>, 
+                implementing <span className="text-accent">Infrastructure as Code</span>, and 
+                designing <span className="text-accent">microservices architectures</span>, 
+                I help teams ship faster and more reliably.
+              </span>
+            </p>
+
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                When I'm not automating infrastructure, 
+                you'll find me contributing to open-source projects, writing technical blogs, 
+                or exploring the latest in cloud-native technologies.
+              </span>
+            </p>
+          </>
+        );
+      case 'security':
+        return (
+          <>
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                Hello! I'm a dedicated <span className="text-primary">Security Professional</span> with 
+                expertise in ethical hacking, vulnerability assessment, and building secure systems. 
+                I thrive on finding security flaws before malicious actors do.
+              </span>
+            </p>
+            
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                With experience in <span className="text-accent">penetration testing</span>, 
+                implementing <span className="text-accent">security controls</span>, and 
+                conducting <span className="text-accent">security audits</span>, 
+                I help organizations protect their critical assets.
+              </span>
+            </p>
+
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                When I'm not hunting vulnerabilities, 
+                you'll find me contributing to open-source projects, writing technical blogs, 
+                or exploring the latest in cybersecurity research.
+              </span>
+            </p>
+          </>
+        );
+      case 'pirate':
+        return (
+          <>
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                Ahoy! I'm a <span className="text-primary">Tech Pirate</span> sailing through 
+                the vast ocean of technology! Just like Luffy searching for the One Piece, 
+                I'm on an adventure to discover amazing tech treasures.
+              </span>
+            </p>
+            
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                I travel through <span className="text-accent">different companies</span> like 
+                islands in the Grand Line, each one teaching me new skills and 
+                <span className="text-accent"> expanding my crew</span> of technologies.
+              </span>
+            </p>
+
+            <p>
+              <span className="text-primary">{'>'}</span>{' '}
+              <span className="text-muted-foreground">
+                My personal projects are my <span className="text-accent">treasure map</span> - 
+                each one leads to new discoveries, new friendships, and endless adventure!
+                The journey is the real treasure! 🏴‍☠️
+              </span>
+            </p>
+          </>
+        );
+    }
+  };
+
+  const getSectionHeader = () => {
+    switch (mode) {
+      case 'devops': return '$ whoami';
+      case 'security': return '$ id';
+      case 'pirate': return '$ captain --info';
+    }
+  };
+
+  const getTechStackLabel = () => {
+    switch (mode) {
+      case 'devops': return '< Tech Stack />';
+      case 'security': return '< Security Arsenal />';
+      case 'pirate': return '< Adventure Gear />';
+    }
+  };
 
   return (
     <section id="about" className="py-20 relative">
@@ -49,7 +186,7 @@ const About: React.FC = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold neon-glow">
-            {mode === 'devops' ? '$ whoami' : '$ id'}
+            {getSectionHeader()}
           </h2>
         </div>
 
@@ -61,7 +198,7 @@ const About: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-display font-semibold text-primary terminal-text">
-                    Skills Unleashed!
+                    {mode === 'pirate' ? 'Treasures Revealed!' : 'Skills Unleashed!'}
                   </h3>
                   <button
                     onClick={() => setTerminalState('normal')}
@@ -110,7 +247,7 @@ const About: React.FC = () => {
                     className="w-3 h-3 rounded-full bg-green-500 hover:brightness-110 transition-all cursor-pointer"
                     title="Maximize"
                   />
-                  <span className="ml-2">terminal</span>
+                  <span className="ml-2">{mode === 'pirate' ? 'ships-log' : 'terminal'}</span>
                   {terminalState === 'maximized' && (
                     <button
                       onClick={() => setTerminalState('normal')}
@@ -123,54 +260,7 @@ const About: React.FC = () => {
                 
                 {terminalState !== 'minimized' && (
                   <div className="font-mono text-sm leading-relaxed space-y-4">
-                    <p>
-                      <span className="text-primary">{'>'}</span>{' '}
-                      <span className="text-muted-foreground">
-                        {mode === 'devops' ? (
-                          <>
-                            Hello! I'm a passionate <span className="text-primary">DevOps Engineer</span> with 
-                            expertise in cloud infrastructure, automation, and building resilient systems. 
-                            I thrive on optimizing deployment pipelines and ensuring high availability.
-                          </>
-                        ) : (
-                          <>
-                            Hello! I'm a dedicated <span className="text-primary">Security Professional</span> with 
-                            expertise in ethical hacking, vulnerability assessment, and building secure systems. 
-                            I thrive on finding security flaws before malicious actors do.
-                          </>
-                        )}
-                      </span>
-                    </p>
-                    
-                    <p>
-                      <span className="text-primary">{'>'}</span>{' '}
-                      <span className="text-muted-foreground">
-                        {mode === 'devops' ? (
-                          <>
-                            With experience in managing <span className="text-accent">Kubernetes clusters</span>, 
-                            implementing <span className="text-accent">Infrastructure as Code</span>, and 
-                            designing <span className="text-accent">microservices architectures</span>, 
-                            I help teams ship faster and more reliably.
-                          </>
-                        ) : (
-                          <>
-                            With experience in <span className="text-accent">penetration testing</span>, 
-                            implementing <span className="text-accent">security controls</span>, and 
-                            conducting <span className="text-accent">security audits</span>, 
-                            I help organizations protect their critical assets.
-                          </>
-                        )}
-                      </span>
-                    </p>
-
-                    <p>
-                      <span className="text-primary">{'>'}</span>{' '}
-                      <span className="text-muted-foreground">
-                        When I'm not {mode === 'devops' ? 'automating infrastructure' : 'hunting vulnerabilities'}, 
-                        you'll find me contributing to open-source projects, writing technical blogs, 
-                        or exploring the latest in {mode === 'devops' ? 'cloud-native technologies' : 'cybersecurity research'}.
-                      </span>
-                    </p>
+                    {getTerminalContent()}
 
                     <div className="pt-2">
                       <span className="text-primary">{'>'}</span>{' '}
@@ -186,7 +276,7 @@ const About: React.FC = () => {
           {/* Skills Grid */}
           <div>
             <h3 className="text-xl font-display font-semibold mb-6 text-primary terminal-text">
-              {'<'} Tech Stack {'/>'} 
+              {getTechStackLabel()}
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {skills.map((skill, index) => (

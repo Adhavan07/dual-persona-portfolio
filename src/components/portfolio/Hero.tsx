@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import { ChevronDown } from 'lucide-react';
 import profilePic from '@/assets/profile-pic.png';
+import luffyIcon from '@/assets/luffy-icon.png';
 
 // Code rain characters
 const CODE_CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン<>/{}[]();:=+-*&%$#@!?';
+const PIRATE_CHARS = '⚓☠️🏴‍☠️🗺️💎🔱⛵🌊🦜';
 
 const Hero: React.FC = () => {
   const { mode, isTransitioning } = usePortfolio();
@@ -13,21 +15,31 @@ const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState(false);
   const prevModeRef = useRef(mode);
 
-  // Generate code rain columns
+  // Generate code rain columns based on mode
   const codeRainColumns = useMemo(() => {
+    const chars = mode === 'pirate' ? PIRATE_CHARS : CODE_CHARS;
     return [...Array(30)].map((_, i) => ({
       id: i,
       left: `${(i / 30) * 100}%`,
       delay: Math.random() * 20,
       duration: 15 + Math.random() * 10,
-      chars: [...Array(20)].map(() => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)])
+      chars: [...Array(20)].map(() => chars[Math.floor(Math.random() * chars.length)])
     }));
-  }, []);
+  }, [mode]);
 
   const devopsTitle = 'DevOps | Cloud | SRE Engineer';
   const securityTitle = 'DevSecOps | Ethical Hacker | Security Engineer';
+  const pirateTitle = 'Tech Pirate | Personal Projects | Adventure Seeker';
   
-  const targetTitle = mode === 'devops' ? devopsTitle : securityTitle;
+  const getTargetTitle = () => {
+    switch (mode) {
+      case 'devops': return devopsTitle;
+      case 'security': return securityTitle;
+      case 'pirate': return pirateTitle;
+    }
+  };
+
+  const targetTitle = getTargetTitle();
 
   useEffect(() => {
     setDisplayText('');
@@ -61,10 +73,62 @@ const Hero: React.FC = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const getTerminalPrompt = () => {
+    switch (mode) {
+      case 'devops': return 'root@cloud-server:~$';
+      case 'security': return 'root@secure-shell:~$';
+      case 'pirate': return 'captain@thousand-sunny:~$';
+    }
+  };
+
+  const getProfileImage = () => {
+    if (mode === 'pirate') return luffyIcon;
+    return profilePic;
+  };
+
+  const getDescription = () => {
+    switch (mode) {
+      case 'devops':
+        return (
+          <>
+            <span className="text-primary">{'>'}</span> Passionate about building scalable infrastructure, 
+            automating everything, and ensuring 99.99% uptime. 
+            <span className="text-accent"> Kubernetes</span> enthusiast and 
+            <span className="text-accent"> CI/CD</span> architect.
+          </>
+        );
+      case 'security':
+        return (
+          <>
+            <span className="text-primary">{'>'}</span> Dedicated to securing digital assets, 
+            finding vulnerabilities before the bad actors do, and building 
+            <span className="text-accent"> secure-by-design</span> systems. 
+            <span className="text-accent"> Ethical hacker</span> & security advocate.
+          </>
+        );
+      case 'pirate':
+        return (
+          <>
+            <span className="text-primary">{'>'}</span> Setting sail through the vast tech ocean! 
+            Just like a pirate exploring new islands, I travel through companies discovering 
+            <span className="text-accent"> new technologies</span> and building 
+            <span className="text-accent"> personal adventures</span>. The treasure? Knowledge!
+          </>
+        );
+    }
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      
+      {/* Pirate mode - wave effect */}
+      {mode === 'pirate' && (
+        <div className="absolute bottom-0 left-0 right-0 h-40 opacity-20">
+          <div className="absolute inset-0 animate-wave-slow bg-gradient-to-t from-accent/30 to-transparent" />
+        </div>
+      )}
       
       {/* Code Rain Effect - Extremely Subtle */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -90,7 +154,7 @@ const Hero: React.FC = () => {
           {/* Terminal prompt */}
           <div className="mb-6 inline-block">
             <span className="text-primary/60 font-mono text-sm md:text-base">
-              {mode === 'devops' ? 'root@cloud-server:~$' : 'root@secure-shell:~$'}
+              {getTerminalPrompt()}
             </span>
             <span className="text-primary ml-2 animate-pulse">_</span>
           </div>
@@ -102,7 +166,7 @@ const Hero: React.FC = () => {
               className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-primary overflow-hidden bg-card flex items-center justify-center ${isGlitching ? 'animate-profile-glitch' : ''}`}
             >
               <img 
-                src={profilePic} 
+                src={getProfileImage()} 
                 alt="Profile" 
                 className="w-full h-full object-cover"
               />
@@ -115,16 +179,25 @@ const Hero: React.FC = () => {
                   </div>
                 </>
               )}
+              {mode === 'pirate' && (
+                <>
+                  {/* Pirate overlay effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px]">
+                    ⚓
+                  </div>
+                </>
+              )}
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-full border border-primary/50 animate-pulse-glow pointer-events-none" />
             </div>
             
             {/* Animated waving character */}
             <div className="text-4xl md:text-5xl lg:text-6xl animate-wave">
-              👋
+              {mode === 'pirate' ? '🏴‍☠️' : '👋'}
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold neon-glow">
-              JOHN DOE
+              {mode === 'pirate' ? 'CAPTAIN DOE' : 'JOHN DOE'}
             </h1>
           </div>
 
@@ -138,21 +211,7 @@ const Hero: React.FC = () => {
             </h2>
           </div>
           <p className="text-muted-foreground font-mono text-sm md:text-base max-w-2xl mx-auto mb-12 leading-relaxed">
-            {mode === 'devops' ? (
-              <>
-                <span className="text-primary">{'>'}</span> Passionate about building scalable infrastructure, 
-                automating everything, and ensuring 99.99% uptime. 
-                <span className="text-accent"> Kubernetes</span> enthusiast and 
-                <span className="text-accent"> CI/CD</span> architect.
-              </>
-            ) : (
-              <>
-                <span className="text-primary">{'>'}</span> Dedicated to securing digital assets, 
-                finding vulnerabilities before the bad actors do, and building 
-                <span className="text-accent"> secure-by-design</span> systems. 
-                <span className="text-accent"> Ethical hacker</span> & security advocate.
-              </>
-            )}
+            {getDescription()}
           </p>
 
 

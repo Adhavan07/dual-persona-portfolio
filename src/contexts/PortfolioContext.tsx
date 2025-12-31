@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
-type PortfolioMode = 'devops' | 'security';
+export type PortfolioMode = 'devops' | 'security' | 'pirate';
 
 interface PortfolioContextType {
   mode: PortfolioMode;
   isTransitioning: boolean;
+  setMode: (mode: PortfolioMode) => void;
   toggleMode: () => void;
 }
 
@@ -19,15 +20,31 @@ export const usePortfolio = () => {
 };
 
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mode, setMode] = useState<PortfolioMode>('devops');
+  const [mode, setModeState] = useState<PortfolioMode>('devops');
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const setMode = useCallback((newMode: PortfolioMode) => {
+    if (newMode === mode) return;
+    
+    setIsTransitioning(true);
+    
+    // Start transition animation
+    setTimeout(() => {
+      setModeState(newMode);
+    }, 500);
+
+    // End transition
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1500);
+  }, [mode]);
 
   const toggleMode = useCallback(() => {
     setIsTransitioning(true);
     
     // Start transition animation
     setTimeout(() => {
-      setMode(prev => prev === 'devops' ? 'security' : 'devops');
+      setModeState(prev => prev === 'devops' ? 'security' : 'devops');
     }, 500);
 
     // End transition
@@ -36,9 +53,15 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }, 1500);
   }, []);
 
+  const getModeClass = () => {
+    if (mode === 'security') return 'security-mode';
+    if (mode === 'pirate') return 'pirate-mode';
+    return '';
+  };
+
   return (
-    <PortfolioContext.Provider value={{ mode, isTransitioning, toggleMode }}>
-      <div className={mode === 'security' ? 'security-mode' : ''}>
+    <PortfolioContext.Provider value={{ mode, isTransitioning, setMode, toggleMode }}>
+      <div className={getModeClass()}>
         {children}
       </div>
     </PortfolioContext.Provider>

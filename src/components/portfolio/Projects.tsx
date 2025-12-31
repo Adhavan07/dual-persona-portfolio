@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { usePortfolio } from '@/contexts/PortfolioContext';
-import { ExternalLink, Github, X, Folder } from 'lucide-react';
+import { ExternalLink, Github, X, Folder, Anchor } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -121,7 +121,76 @@ const Projects: React.FC = () => {
     },
   ];
 
-  const projects = mode === 'devops' ? devopsProjects : securityProjects;
+  const pirateProjects: Project[] = [
+    {
+      id: 'treasure-hunt-game',
+      title: 'Treasure Hunt Game',
+      description: 'An adventure game inspired by One Piece',
+      longDescription: 'A web-based adventure game where players sail across islands, collect treasures, and battle enemies. Built with modern web technologies and featuring anime-inspired graphics and storylines.',
+      techStack: ['React', 'Three.js', 'TypeScript', 'Canvas API', 'Node.js'],
+      githubUrl: 'https://github.com',
+      liveUrl: 'https://example.com',
+    },
+    {
+      id: 'anime-tracker',
+      title: 'Anime Watch Tracker',
+      description: 'Track your anime journey like a ship log',
+      longDescription: 'A personal project to track anime watching progress, rate episodes, and discover new series. Features personalized recommendations and social sharing capabilities.',
+      techStack: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind', 'tRPC'],
+      githubUrl: 'https://github.com',
+    },
+    {
+      id: 'crew-finder',
+      title: 'Developer Crew Finder',
+      description: 'Find your nakama for side projects',
+      longDescription: 'A platform to connect developers looking for collaborators on side projects. Match based on skills, interests, and availability. Build your dream team!',
+      techStack: ['React', 'Firebase', 'TypeScript', 'Tailwind', 'Algolia'],
+      githubUrl: 'https://github.com',
+    },
+    {
+      id: 'island-generator',
+      title: 'Procedural Island Generator',
+      description: 'Generate unique fantasy islands',
+      longDescription: 'A creative tool that generates procedural islands with unique terrains, climates, and treasures. Perfect for game developers, writers, and dreamers.',
+      techStack: ['TypeScript', 'Canvas', 'WebGL', 'Perlin Noise', 'React'],
+      githubUrl: 'https://github.com',
+      liveUrl: 'https://example.com',
+    },
+    {
+      id: 'bounty-board',
+      title: 'Open Source Bounty Board',
+      description: 'Claim bounties on open source issues',
+      longDescription: 'A gamified platform that adds bounty rewards to open source issues. Contributors can earn reputation, badges, and recognition for their contributions.',
+      techStack: ['Next.js', 'Supabase', 'Stripe', 'GitHub API', 'TypeScript'],
+      githubUrl: 'https://github.com',
+    },
+    {
+      id: 'dream-log',
+      title: 'Dream Journal App',
+      description: 'Log your dreams like a captain logs voyages',
+      longDescription: 'A beautiful dream journal application with AI-powered analysis, pattern recognition, and dream interpretation. Track your subconscious adventures!',
+      techStack: ['React Native', 'OpenAI', 'SQLite', 'Expo', 'TypeScript'],
+      githubUrl: 'https://github.com',
+    },
+  ];
+
+  const getProjects = () => {
+    switch (mode) {
+      case 'devops': return devopsProjects;
+      case 'security': return securityProjects;
+      case 'pirate': return pirateProjects;
+    }
+  };
+
+  const projects = getProjects();
+
+  const getSectionTitle = () => {
+    switch (mode) {
+      case 'devops': return '$ ls -la /projects';
+      case 'security': return '$ cat /exploits';
+      case 'pirate': return '$ cat /treasure-map';
+    }
+  };
 
   return (
     <section id="projects" className="py-20 relative">
@@ -130,11 +199,11 @@ const Projects: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
             <span className="text-primary/60 font-mono text-sm">
-              {'// SECTION: PROJECTS'}
+              {mode === 'pirate' ? '// SECTION: TREASURES' : '// SECTION: PROJECTS'}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold neon-glow">
-            {mode === 'devops' ? '$ ls -la /projects' : '$ cat /exploits'}
+            {getSectionTitle()}
           </h2>
         </div>
 
@@ -150,7 +219,11 @@ const Projects: React.FC = () => {
               {/* Card Header */}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <Folder className="w-10 h-10 text-primary group-hover:animate-pulse" />
+                  {mode === 'pirate' ? (
+                    <Anchor className="w-10 h-10 text-primary group-hover:animate-pulse" />
+                  ) : (
+                    <Folder className="w-10 h-10 text-primary group-hover:animate-pulse" />
+                  )}
                   <div className="flex gap-2">
                     {project.githubUrl && (
                       <a
@@ -244,7 +317,9 @@ const Projects: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-sm font-mono text-primary mb-3">{'<'} Tech Stack {'>'}</h4>
+                <h4 className="text-sm font-mono text-primary mb-3">
+                  {mode === 'pirate' ? '< Treasure Components >' : '< Tech Stack >'}
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.techStack.map((tech) => (
                     <span
@@ -277,7 +352,7 @@ const Projects: React.FC = () => {
                     className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground font-mono text-sm rounded hover:opacity-90 transition-opacity"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    Live Demo
+                    {mode === 'pirate' ? 'Explore Treasure' : 'Live Demo'}
                   </a>
                 )}
               </div>

@@ -19,9 +19,29 @@ const GlitchTransition: React.FC = () => {
     'DEPLOYING PIPELINES...',
   ];
 
+  const pirateTexts = [
+    'SETTING SAIL...',
+    'CHARTING NEW WATERS...',
+    'RAISING THE FLAG...',
+    'ADVENTURE AWAITS...',
+    'FINDING THE ONE PIECE...',
+  ];
+
   useEffect(() => {
     if (isTransitioning) {
-      const texts = mode === 'devops' ? devopsTexts : securityTexts;
+      let texts: string[];
+      switch (mode) {
+        case 'devops':
+          texts = devopsTexts;
+          break;
+        case 'security':
+          texts = securityTexts;
+          break;
+        case 'pirate':
+          texts = pirateTexts;
+          break;
+      }
+      
       let index = 0;
       const interval = setInterval(() => {
         setGlitchText(texts[index % texts.length]);
