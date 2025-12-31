@@ -105,6 +105,36 @@ All colors MUST be HSL.
     --card-foreground: 0 100% 85%;
     --muted-foreground: 0 40% 60%;
   }
+
+  /* Pirate Mode - One Piece Luffy Theme (Ocean Blue & Sunny Gold) */
+  .pirate-mode {
+    --background: 220 30% 8%;
+    --foreground: 45 100% 75%;
+
+    --card: 220 30% 12%;
+    --card-foreground: 45 100% 75%;
+
+    --popover: 220 30% 10%;
+    --popover-foreground: 45 100% 75%;
+
+    --primary: 45 100% 55%;
+    --primary-foreground: 220 30% 8%;
+
+    --secondary: 200 80% 45%;
+    --secondary-foreground: 45 100% 90%;
+
+    --muted: 220 25% 18%;
+    --muted-foreground: 45 50% 60%;
+
+    --accent: 200 100% 50%;
+    --accent-foreground: 220 30% 8%;
+
+    --border: 45 60% 30%;
+    --ring: 45 100% 55%;
+
+    --neon: 45 100% 55%;
+    --neon-glow: 45 100% 65%;
+  }
 }
 
 @layer base {
