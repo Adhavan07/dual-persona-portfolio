@@ -11,29 +11,31 @@ const About: React.FC = () => {
   const [terminalState, setTerminalState] = useState<'normal' | 'minimized' | 'maximized' | 'closed'>('normal');
 
   const devopsSkills = [
-    { name: 'Kubernetes', icon: Container },
+    { name: 'Linux (Ubuntu, Fedora, RHEL)', icon: Terminal },
+    { name: 'Bash Scripting', icon: Terminal },
     { name: 'Docker', icon: Container },
-    { name: 'AWS/GCP/Azure', icon: Cloud },
+    { name: 'Kubernetes', icon: Container },
+    { name: 'Jenkins', icon: GitBranch },
+    { name: 'GitHub Actions', icon: GitBranch },
+    { name: 'AWS', icon: Cloud },
+    { name: 'Azure', icon: Cloud },
     { name: 'Terraform', icon: Server },
-    { name: 'CI/CD', icon: GitBranch },
-    { name: 'Linux', icon: Terminal },
-    { name: 'Python', icon: Terminal },
     { name: 'Ansible', icon: Server },
     { name: 'Prometheus', icon: Database },
     { name: 'Grafana', icon: Database },
   ];
 
   const securitySkills = [
-    { name: 'Penetration Testing', icon: Bug },
-    { name: 'SIEM/SOAR', icon: Eye },
-    { name: 'Network Security', icon: Shield },
-    { name: 'Vulnerability Assessment', icon: Lock },
-    { name: 'Incident Response', icon: Shield },
-    { name: 'Cryptography', icon: Fingerprint },
-    { name: 'Security Audits', icon: Eye },
-    { name: 'Threat Modeling', icon: Bug },
-    { name: 'Malware Analysis', icon: Bug },
-    { name: 'OWASP', icon: Shield },
+    { name: 'Trivy (Security Scanning)', icon: Shield },
+    { name: 'SonarQube', icon: Bug },
+    { name: 'DevSecOps', icon: Lock },
+    { name: 'Vulnerability Assessment', icon: Bug },
+    { name: 'Container Security', icon: Container },
+    { name: 'CloudWatch', icon: Eye },
+    { name: 'Nexus Artifact Mgmt', icon: Database },
+    { name: 'Git/Gitea', icon: GitBranch },
+    { name: 'Pipeline Security', icon: Shield },
+    { name: 'Linux Logs Analysis', icon: Terminal },
   ];
 
   const pirateSkills = [
@@ -67,28 +69,28 @@ const About: React.FC = () => {
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                Hello! I'm a passionate <span className="text-primary">DevOps Engineer</span> with 
-                expertise in cloud infrastructure, automation, and building resilient systems. 
-                I thrive on optimizing deployment pipelines and ensuring high availability.
+                Hello! I'm <span className="text-primary">Adhavan J.V.R</span>, a DevOps-focused engineer 
+                with hands-on experience in <span className="text-accent">Linux systems</span>, 
+                <span className="text-accent"> Bash scripting</span>, and command-line automation.
               </span>
             </p>
             
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                With experience in managing <span className="text-accent">Kubernetes clusters</span>, 
-                implementing <span className="text-accent">Infrastructure as Code</span>, and 
-                designing <span className="text-accent">microservices architectures</span>, 
-                I help teams ship faster and more reliably.
+                Skilled in building and operating <span className="text-accent">CI/CD pipelines</span> using 
+                <span className="text-accent"> Jenkins</span>, <span className="text-accent">Docker</span>, 
+                <span className="text-accent"> Kubernetes</span>, <span className="text-accent">Terraform</span>, 
+                and <span className="text-accent">AWS</span>.
               </span>
             </p>
 
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                When I'm not automating infrastructure, 
-                you'll find me contributing to open-source projects, writing technical blogs, 
-                or exploring the latest in cloud-native technologies.
+                Comfortable working with Linux services, logs, and monitoring tools with 
+                <span className="text-accent"> Prometheus</span> and <span className="text-accent">Grafana</span>. 
+                Strong self-learning mindset aligned to DevOps roles.
               </span>
             </p>
           </>
@@ -99,28 +101,27 @@ const About: React.FC = () => {
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                Hello! I'm a dedicated <span className="text-primary">Security Professional</span> with 
-                expertise in ethical hacking, vulnerability assessment, and building secure systems. 
-                I thrive on finding security flaws before malicious actors do.
+                Hello! I'm <span className="text-primary">Adhavan J.V.R</span>, focused on 
+                integrating <span className="text-accent">security</span> into DevOps pipelines 
+                and building secure-by-design systems.
               </span>
             </p>
             
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                With experience in <span className="text-accent">penetration testing</span>, 
-                implementing <span className="text-accent">security controls</span>, and 
-                conducting <span className="text-accent">security audits</span>, 
-                I help organizations protect their critical assets.
+                Experience in security scanning with <span className="text-accent">Trivy</span>, 
+                code quality checks with <span className="text-accent">SonarQube</span>, and 
+                artifact management with <span className="text-accent">Nexus</span>.
               </span>
             </p>
 
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                When I'm not hunting vulnerabilities, 
-                you'll find me contributing to open-source projects, writing technical blogs, 
-                or exploring the latest in cybersecurity research.
+                Monitoring and troubleshooting using <span className="text-accent">CloudWatch</span>, 
+                <span className="text-accent"> Grafana</span>, and Linux log analysis to ensure 
+                system health and security compliance.
               </span>
             </p>
           </>
@@ -131,7 +132,7 @@ const About: React.FC = () => {
             <p>
               <span className="text-primary">{'>'}</span>{' '}
               <span className="text-muted-foreground">
-                Ahoy! I'm a <span className="text-primary">Tech Pirate</span> sailing through 
+                Ahoy! I'm <span className="text-primary">Captain Adhavan</span> sailing through 
                 the vast ocean of technology! Just like Luffy searching for the One Piece, 
                 I'm on an adventure to discover amazing tech treasures.
               </span>

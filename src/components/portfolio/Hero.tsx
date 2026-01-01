@@ -27,8 +27,8 @@ const Hero: React.FC = () => {
     }));
   }, [mode]);
 
-  const devopsTitle = 'DevOps | Cloud | SRE Engineer';
-  const securityTitle = 'DevSecOps | Ethical Hacker | Security Engineer';
+  const devopsTitle = 'DevOps Engineer | Cloud | Linux';
+  const securityTitle = 'DevSecOps | Security Analyst | Automation';
   const pirateTitle = 'Tech Pirate | Personal Projects | Adventure Seeker';
   
   const getTargetTitle = () => {
@@ -75,8 +75,8 @@ const Hero: React.FC = () => {
 
   const getTerminalPrompt = () => {
     switch (mode) {
-      case 'devops': return 'root@cloud-server:~$';
-      case 'security': return 'root@secure-shell:~$';
+      case 'devops': return 'adhavan@cloud-server:~$';
+      case 'security': return 'adhavan@secure-shell:~$';
       case 'pirate': return 'captain@thousand-sunny:~$';
     }
   };
@@ -91,19 +91,19 @@ const Hero: React.FC = () => {
       case 'devops':
         return (
           <>
-            <span className="text-primary">{'>'}</span> Passionate about building scalable infrastructure, 
-            automating everything, and ensuring 99.99% uptime. 
-            <span className="text-accent"> Kubernetes</span> enthusiast and 
-            <span className="text-accent"> CI/CD</span> architect.
+            <span className="text-primary">{'>'}</span> DevOps-focused engineer with hands-on experience in 
+            <span className="text-accent"> Linux systems</span>, <span className="text-accent">Bash scripting</span>, and CLI automation. 
+            Skilled in <span className="text-accent">Jenkins</span>, <span className="text-accent">Docker</span>, <span className="text-accent">Kubernetes</span>, 
+            <span className="text-accent"> Terraform</span>, and <span className="text-accent">AWS</span>.
           </>
         );
       case 'security':
         return (
           <>
-            <span className="text-primary">{'>'}</span> Dedicated to securing digital assets, 
-            finding vulnerabilities before the bad actors do, and building 
-            <span className="text-accent"> secure-by-design</span> systems. 
-            <span className="text-accent"> Ethical hacker</span> & security advocate.
+            <span className="text-primary">{'>'}</span> Focused on integrating 
+            <span className="text-accent"> security</span> into DevOps pipelines, with experience in 
+            <span className="text-accent"> vulnerability scanning</span>, <span className="text-accent">Trivy</span>, 
+            and <span className="text-accent">SonarQube</span>. Building secure-by-design systems.
           </>
         );
       case 'pirate':
@@ -197,7 +197,7 @@ const Hero: React.FC = () => {
               {mode === 'pirate' ? '🏴‍☠️' : '👋'}
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold neon-glow">
-              {mode === 'pirate' ? 'CAPTAIN DOE' : 'JOHN DOE'}
+              {mode === 'pirate' ? 'CAPTAIN ADHAVAN' : 'ADHAVAN J.V.R'}
             </h1>
           </div>
 

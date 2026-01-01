@@ -17,64 +17,47 @@ const ResumeDownload: React.FC = () => {
   const devopsResumes: ResumeOption[] = [
     {
       id: 'devops',
-      title: 'DevOps Engineer',
+      title: 'DevOps Engineer Resume',
       description: 'Focus on CI/CD, automation, and infrastructure management',
       icon: Server,
-      filename: 'John_Doe_DevOps_Resume.pdf',
+      filename: 'Adhavan_JVR_Resume.pdf',
     },
     {
       id: 'cloud',
-      title: 'Cloud Engineer',
-      description: 'Emphasis on AWS, GCP, Azure, and cloud architecture',
+      title: 'Cloud Engineer Resume',
+      description: 'Emphasis on AWS, Azure, and cloud architecture',
       icon: Cloud,
-      filename: 'John_Doe_Cloud_Resume.pdf',
-    },
-    {
-      id: 'sre',
-      title: 'SRE Resume',
-      description: 'Highlights reliability, monitoring, and incident response',
-      icon: FileText,
-      filename: 'John_Doe_SRE_Resume.pdf',
+      filename: 'Adhavan_JVR_Resume.pdf',
     },
   ];
 
   const securityResumes: ResumeOption[] = [
     {
       id: 'devsecops',
-      title: 'DevSecOps Engineer',
+      title: 'DevSecOps Engineer Resume',
       description: 'Focus on security integration in DevOps pipelines',
       icon: Shield,
-      filename: 'John_Doe_DevSecOps_Resume.pdf',
-    },
-    {
-      id: 'pentester',
-      title: 'Penetration Tester',
-      description: 'Emphasis on ethical hacking and vulnerability assessment',
-      icon: Bug,
-      filename: 'John_Doe_PenTester_Resume.pdf',
+      filename: 'Adhavan_JVR_Resume.pdf',
     },
     {
       id: 'security-analyst',
-      title: 'Security Analyst',
-      description: 'Highlights SOC operations, threat analysis, and incident response',
+      title: 'Security Analyst Resume',
+      description: 'Highlights security scanning, Trivy, and SonarQube',
       icon: Lock,
-      filename: 'John_Doe_Security_Analyst_Resume.pdf',
+      filename: 'Adhavan_JVR_Resume.pdf',
     },
   ];
 
   const resumes = mode === 'devops' ? devopsResumes : securityResumes;
 
   const handleDownload = (resume: ResumeOption) => {
-    // In a real app, this would download the actual resume file
-    console.log(`Downloading: ${resume.filename}`);
-    // Create a mock download
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(`Resume: ${resume.title}`));
-    element.setAttribute('download', resume.filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    // Download the actual resume file
+    const link = document.createElement('a');
+    link.href = '/Adhavan_JVR_Resume.pdf';
+    link.download = resume.filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
