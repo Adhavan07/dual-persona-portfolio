@@ -58,10 +58,9 @@ const Contact: React.FC = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:hello@example.com', label: 'Email' },
+    { icon: Github, href: 'https://github.com/adjvr007', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/adhavan-jvr', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:adjvr007@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -173,7 +172,7 @@ const Contact: React.FC = () => {
 
         {/* Footer Text */}
         <div className="mt-16 text-center font-mono text-xs text-muted-foreground">
-          <span className="text-primary">$</span> echo "© 2024 John Doe. All rights reserved."
+          <span className="text-primary">$</span> echo "© 2024 Adhavan J.V.R. All rights reserved."
         </div>
       </div>
     </section>

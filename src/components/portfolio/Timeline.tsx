@@ -18,89 +18,51 @@ const Timeline: React.FC = () => {
 
   const educationItems: TimelineItem[] = [
     {
-      id: 'masters',
-      title: 'Master of Science in Computer Science',
-      organization: 'Tech University',
-      location: 'San Francisco, CA',
-      startDate: '2020',
-      endDate: '2022',
-      description: 'Specialized in Distributed Systems and Cloud Computing',
-      highlights: ['GPA: 3.9/4.0', 'Research in Container Orchestration', 'Teaching Assistant for Cloud Computing'],
-    },
-    {
       id: 'bachelors',
-      title: 'Bachelor of Technology in IT',
-      organization: 'State Engineering College',
-      location: 'Boston, MA',
-      startDate: '2016',
-      endDate: '2020',
-      description: 'Focused on Software Engineering and Network Administration',
-      highlights: ['GPA: 3.7/4.0', 'President of Coding Club', 'Hackathon Winner 2019'],
+      title: 'B.E. Computer Science',
+      organization: 'Misrimal Navajee Munoth Jain Engineering College',
+      location: 'Chennai, India',
+      startDate: '2020',
+      endDate: '2024',
+      description: 'Focused on Computer Science and Engineering fundamentals',
+      highlights: ['CGPA: 8.0', 'DevOps & Cloud Computing Focus', 'Linux Systems Administration'],
     },
     {
-      id: 'high-school',
-      title: 'High School Diploma',
-      organization: 'Central High School',
-      location: 'Chicago, IL',
-      startDate: '2014',
-      endDate: '2016',
-      description: 'Science stream with focus on Mathematics and Computer Science',
-      highlights: ['Valedictorian', 'State Science Fair Winner', 'National Merit Scholar'],
+      id: 'cert-cicd',
+      title: 'CI/CD Certification',
+      organization: 'Infosys Springboard',
+      location: 'Online',
+      startDate: '2024',
+      endDate: '2024',
+      description: 'Professional certification in Continuous Integration and Continuous Deployment',
+      highlights: ['Jenkins Pipelines', 'GitHub Actions', 'Docker Hub Integration'],
+    },
+    {
+      id: 'cert-devops',
+      title: 'DevOps Certification',
+      organization: 'GUVI',
+      location: 'Online',
+      startDate: '2024',
+      endDate: '2024',
+      description: 'Comprehensive DevOps practices and tools certification',
+      highlights: ['Cloud Infrastructure', 'Container Orchestration', 'Infrastructure as Code'],
     },
   ];
 
   const experienceItems: TimelineItem[] = [
     {
-      id: 'senior-devops',
-      title: mode === 'devops' ? 'Senior DevOps Engineer' : 'Senior Security Engineer',
-      organization: 'TechCorp Inc.',
-      location: 'San Francisco, CA',
-      startDate: '2023',
-      endDate: 'Present',
+      id: 'devops-intern',
+      title: mode === 'devops' ? 'DevOps Intern' : 'DevSecOps Intern',
+      organization: 'Xenovex Technologies Pvt. Ltd',
+      location: 'India',
+      startDate: 'June 2025',
+      endDate: 'Aug 2025',
       description: mode === 'devops' 
-        ? 'Leading DevOps initiatives for a team of 50+ engineers'
-        : 'Leading security initiatives for a team of 50+ engineers',
+        ? 'Worked on Linux-based CI/CD environments, configuring Jenkins pipelines and managing build agents'
+        : 'Integrated security practices into CI/CD pipelines and monitored application security',
       highlights: mode === 'devops'
-        ? ['Reduced deployment time by 70%', 'Implemented GitOps with ArgoCD', 'Managed 100+ microservices']
-        : ['Conducted 50+ security assessments', 'Implemented zero-trust architecture', 'Reduced vulnerabilities by 80%'],
-    },
-    {
-      id: 'devops-engineer',
-      title: mode === 'devops' ? 'DevOps Engineer' : 'Security Analyst',
-      organization: 'CloudSoft Solutions',
-      location: 'Seattle, WA',
-      startDate: '2022',
-      endDate: '2023',
-      description: mode === 'devops'
-        ? 'Built and maintained CI/CD pipelines and cloud infrastructure'
-        : 'Performed security analysis and incident response',
-      highlights: mode === 'devops'
-        ? ['Migrated 20+ apps to Kubernetes', 'Designed multi-region DR solution', 'Implemented IaC with Terraform']
-        : ['Investigated 100+ security incidents', 'Developed security automation', 'Built threat detection rules'],
-    },
-    {
-      id: 'sre-intern',
-      title: mode === 'devops' ? 'SRE Intern' : 'Security Intern',
-      organization: 'StartupXYZ',
-      location: 'Austin, TX',
-      startDate: '2021',
-      endDate: '2022',
-      description: mode === 'devops'
-        ? 'Supported site reliability engineering team'
-        : 'Supported the security operations team',
-      highlights: mode === 'devops'
-        ? ['Set up monitoring with Prometheus', 'Wrote automation scripts', 'On-call rotation experience']
-        : ['Assisted in penetration testing', 'Analyzed malware samples', 'Created security documentation'],
-    },
-    {
-      id: 'developer-intern',
-      title: 'Software Development Intern',
-      organization: 'CodeFactory',
-      location: 'Remote',
-      startDate: '2020',
-      endDate: '2021',
-      description: 'Developed features for web applications',
-      highlights: ['Built RESTful APIs', 'Wrote unit tests', 'Participated in code reviews'],
+        ? ['Configured Jenkins pipelines', 'Automated build/deployment with Docker & Bash', 'Troubleshot pipeline failures using Linux logs', 'Monitored with Grafana & Azure']
+        : ['Security integration in pipelines', 'Log analysis for security events', 'Azure monitoring services', 'Container security practices'],
     },
   ];
 
