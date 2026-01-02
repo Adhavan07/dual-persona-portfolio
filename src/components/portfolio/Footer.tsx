@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <div className="font-mono text-xs text-muted-foreground">
-            <span className="text-primary">$</span> echo "© 2024 John Doe. All rights reserved."
+            <span className="text-primary">$</span> echo "© 2024 Adhavan.J.V.R. All rights reserved."
           </div>
         </div>
 

@@ -27,8 +27,8 @@ const Hero: React.FC = () => {
     }));
   }, [mode]);
 
-  const devopsTitle = 'DevOps Engineer | Cloud | Linux';
-  const securityTitle = 'DevSecOps | Security Analyst | Automation';
+  const devopsTitle = 'DevOps Engineer | Cloud | Mlops';
+  const securityTitle = 'DevSecOps | Cyber secrity | Cloud Security';
   const pirateTitle = 'Tech Pirate | Personal Projects | Adventure Seeker';
   
   const getTargetTitle = () => {
