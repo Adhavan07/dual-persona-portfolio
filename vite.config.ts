@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/dual-persona-portfolio/",
+  base: process.env.VERCEL ? "/" : "/dual-persona-portfolio/",
   server: {
     host: "::",
     port: 8080,
