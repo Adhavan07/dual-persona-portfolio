@@ -50,6 +50,14 @@ const Projects: React.FC = () => {
       techStack: ['Prometheus', 'Grafana', 'CloudWatch', 'Azure Monitor', 'Docker'],
       githubUrl: 'https://github.com',
     },
+    {
+      id: 'Kubernetes-fastapi',
+      title: 'DevOps Python FastAPI on Kubernetes',
+      description: 'This project demonstrates an end-to-end DevOps workflow for deploying a Python FastAPI application using Docker, Kubernetes, Helm, and GitHub Actions.',
+      longDescription: 'The goal of this project is to showcase real-world DevOps practices, including containerization, orchestration, Helm-based deployments, and CI automation.',
+      techStack: ['Python','Docker' ,'Kubernetes' ,'Helm' , 'Linux', 'Bash'],
+      githubUrl: 'https://github.com/Adhavan07/devops-python-k8s-project',
+    }
   ];
 
   const securityProjects: Project[] = [
