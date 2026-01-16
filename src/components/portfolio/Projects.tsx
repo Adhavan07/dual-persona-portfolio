@@ -24,7 +24,7 @@ const Projects: React.FC = () => {
       description: 'Linux-based AWS EC2 deployment with CI/CD automation',
       longDescription: 'Provisioned and managed Linux-based AWS EC2 instances for application hosting. Automated application deployment using Bash scripts and Docker containers. Built Jenkins CI/CD pipelines to build images, push to Docker Hub, and deploy on EC2. Configured CloudWatch and SNS alerts for health monitoring and downtime notifications.',
       techStack: ['Linux', 'Bash', 'Docker', 'Jenkins', 'AWS', 'CloudWatch'],
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Adhavan07/devops-build',
     },
     {
       id: 'cicd-pipeline',
