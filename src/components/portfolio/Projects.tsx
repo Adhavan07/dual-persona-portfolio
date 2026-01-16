@@ -32,7 +32,7 @@ const Projects: React.FC = () => {
       description: 'End-to-end CI/CD pipeline with security scanning',
       longDescription: 'Designed and implemented an end-to-end CI/CD pipeline on Linux-based infrastructure. Automated pipeline stages using Bash scripts and Linux command-line tools. Provisioned CI/CD infrastructure and Kubernetes resources using Terraform (IaC). Integrated security scanning (Trivy), code quality checks (SonarQube), and artifact management (Nexus). Monitored Jenkins and Kubernetes clusters using Prometheus and Grafana.',
       techStack: ['Linux', 'Bash', 'Terraform', 'Jenkins', 'Kubernetes', 'AWS', 'Trivy', 'SonarQube'],
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Adhavan07/ci-cd-devops-pipeline',
     },
     {
       id: 'mlops-project',
